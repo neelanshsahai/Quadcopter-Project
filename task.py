@@ -33,7 +33,7 @@ class Task():
         z_diff = abs(self.target_pos[2] - self.sim.pose[2])
         z_vel = self.sim.v[2]
         xy_dist = np.sqrt(((self.target_pos[:2] - self.sim.pose[:2])**2).sum())
-        reward = min(z_diff, 20.0) + 10.0*z_vel - 2.0*xy_dist
+        reward = -5.0*z_diff - 2.0*abs(z_vel) - xy_dist
         return reward
 
     def step(self, rotor_speeds):
